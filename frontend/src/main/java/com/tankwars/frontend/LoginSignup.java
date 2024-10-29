@@ -29,9 +29,9 @@ public class LoginSignup extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1127, 727);
         stage.setTitle("Tank Wars");
         stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setMaximized(true);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(true);
+        stage.setMaximized(false);
+        stage.initStyle(StageStyle.DECORATED);
         stage.show();
 
         // Get reference to the Text element
@@ -69,7 +69,9 @@ public class LoginSignup extends Application {
 
     private void showLoginWindow(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-signup-scene.fxml"));
+        // making a loader from an fxml file
         Scene loginScene = new Scene(fxmlLoader.load());
+        // making a new scene from fxml file
 
         // Apply Fade Transition to login scene
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), loginScene.getRoot());
@@ -77,7 +79,7 @@ public class LoginSignup extends Application {
         fadeIn.setToValue(1.0);
 
         stage.setScene(loginScene);
-        stage.setMaximized(true);
+        stage.setMaximized(false);
         fadeIn.play();
     }
 }

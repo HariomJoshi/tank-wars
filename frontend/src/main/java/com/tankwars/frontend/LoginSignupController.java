@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.util.Duration;
 import javafx.scene.transform.Rotate;
 
+import java.util.regex.Pattern;
+
 public class LoginSignupController {
 
 
@@ -120,7 +122,31 @@ public class LoginSignupController {
         });
     }
 
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField password;
+    @FXML
+    private TextField confirmPassword;
+
     private void handleRegisterUser() {
+        if(!password.getText().equals(confirmPassword.getText())){
+            Alert alert = new Alert((Alert.AlertType.ERROR));
+            alert.setContentText("password is not equal to confirm password");
+            alert.show();
+            return;
+        }
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+@[a-zA-Z]+\\.[a-zA-Z]{2,6}$");
+        String emailStr  = email.getText();
+        if(!pattern.matcher(emailStr).matches()){
+            Alert alert = new Alert((Alert.AlertType.ERROR));
+            alert.setContentText("Please enter a valid email");
+            alert.show();
+            return;
+        }
+
         flipTransition(signupPane, verifyOTPPane);
         buttonVerifyOTP.setOnAction(e->{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
