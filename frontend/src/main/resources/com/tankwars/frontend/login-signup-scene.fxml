@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="865.0" prefWidth="1535.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tankwars.frontend.LoginSignupController">
+    <center>
+        <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="865.0" prefWidth="1535.0" style="-fx-background-image: url('images/bg_1.png'); -fx-background-size: cover;">
+            <children>
+                <ImageView fitHeight="865.0" fitWidth="1535.0" opacity="0.75" pickOnBounds="true">
+                    <image>
+                        <Image url="@../../../images/bg_1.png" />
+                    </image>
+                </ImageView>
+
+                <!-- Signup Pane -->
+                <Pane fx:id="signupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="727.0" prefWidth="551.0" style="-fx-background-color: rgba(224, 247, 250, 0.3); -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 20, 0.3, 0, 10); -fx-border-color: rgba(255, 255, 255, 0.2); -fx-border-width: 1; -fx-border-radius: 30;" visible="false" StackPane.alignment="CENTER">
+                    <children>
+                        <Text layoutX="-48.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER" wrappingWidth="647.7367324829102">
+                            <font>
+                                <Font name="Algerian" size="51.0" />
+                            </font>
+                            <fill>
+                                <LinearGradient endX="0.5189394011641993" endY="0.4659090981338964" startX="0.5189393650401721" startY="0.6628787662043715">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.3499999940395355" green="0.03500000014901161" blue="0.03500000014901161" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.6631578803062439" green="0.38807016611099243" blue="0.38807016611099243" opacity="0.8799999952316284" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                        <Label layoutX="49.0" layoutY="152.0" prefHeight="39.0" prefWidth="252.0" text="Username">
+                            <font>
+                                <Font name="Century Schoolbook" size="23.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9975609756097561">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="242.0" prefHeight="39.0" prefWidth="252.0" text="Email">
+                            <font>
+                                <Font name="Century Schoolbook" size="23.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9975609756097561">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="337.0" prefHeight="39.0" prefWidth="252.0" text="Password">
+                            <font>
+                                <Font name="Century Schoolbook" size="23.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9975609756097561">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="430.0" prefHeight="39.0" prefWidth="252.0" text="Confirm Password">
+                            <font>
+                                <Font name="Century Schoolbook" size="23.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9975609756097561">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <TextField layoutX="49.0" layoutY="191.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
+                        <TextField layoutX="49.0" layoutY="281.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                        <TextField layoutX="49.0" layoutY="376.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                        <TextField layoutX="49.0" layoutY="463.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                        <Button fx:id="buttonRegisterUser" layoutX="49.0" layoutY="554.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="466.0" style="-fx-background-color: #6a89cc; -fx-text-fill: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);" text="Register">
+                            <font>
+                                <Font name="Century Schoolbook" size="21.0" />
+                            </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </Button>
+                        <Label layoutX="49.0" layoutY="601.0" prefHeight="35.0" prefWidth="174.0" text="Already a User ?">
+                            <font>
+                                <Font name="Century Schoolbook" size="18.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9975609756097561">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <Button fx:id="loginLink" layoutX="164.0" layoutY="603.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: none;" text="Login Here" textFill="#432efa">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </Button>
+                    </children>
+                </Pane>
+
+                <!-- Login Pane -->
+                <Pane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="727.0" prefWidth="551.0" style="-fx-background-color: rgba(224, 247, 250, 0.3); -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 20, 0.3, 0, 10); -fx-border-color: rgba(255, 255, 255, 0.2); -fx-border-width: 1; -fx-border-radius: 30;" StackPane.alignment="CENTER">
+                    <children>
+                        <Text layoutX="-48.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Yourself" textAlignment="CENTER" wrappingWidth="647.7367324829102">
+                            <font>
+                                <Font name="Algerian" size="51.0" />
+                            </font>
+                            <fill>
+                                <LinearGradient endX="0.5189394011641993" endY="0.4659090981338964" startX="0.5189393650401721" startY="0.6628787662043715">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.3499999940395355" green="0.03500000014901161" blue="0.03500000014901161" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.6631578803062439" green="0.38807016611099243" blue="0.38807016611099243" opacity="0.8799999952316284" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                        <Label layoutX="49.0" layoutY="152.0" prefHeight="39.0" prefWidth="252.0" text="Username">
+                            <font>
+                                <Font name="Century Schoolbook" size="23.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9975609756097561">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="242.0" prefHeight="39.0" prefWidth="252.0" text="Password">
+                            <font>
+                                <Font name="Century Schoolbook" size="23.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <TextField layoutX="49.0" layoutY="191.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
+                        <TextField layoutX="49.0" layoutY="281.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
+                        <Button layoutX="49.0" layoutY="354.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="466.0" style="-fx-background-color: #6a89cc; -fx-text-fill: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);" text="Login">
+                            <font>
+                                <Font name="Century Schoolbook" size="21.0" />
+                            </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </Button>
+                        <Label layoutX="49.0" layoutY="455.0" prefHeight="35.0" prefWidth="174.0" text="New User ?">
+                            <font>
+                                <Font name="Century Schoolbook" size="18.0" />
+                            </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                        </Label>
+                        <Button fx:id="registerLink" layoutX="160.0" layoutY="457.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: none;" text="Register Here" textFill="#432efa">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                        </Button>
+                  <Label layoutX="49.0" layoutY="505.0" prefHeight="31.0" prefWidth="242.0" text="Forgot your password ?">
+                     <textFill>
+                        <LinearGradient endX="1.0" startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="Century Schoolbook" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="resetPasswordButton" layoutX="246.0" layoutY="503.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="194.0" style="-fx-background-color: none;" text="Reset Password" textFill="#432efa">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                    </children>
+                </Pane>
+
+            <!-- reset password pane -->
+            <Pane fx:id="resetPasswordPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="551.0" style="-fx-background-color: rgba(224, 247, 250, 0.3)e; -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 20, 0.3, 0, 10); -fx-border-color: rgba(255, 255, 255, 0.2); -fx-border-width: 1; -fx-border-radius: 30;" visible="false">
+               <children>
+                  <Text layoutX="-40.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reset Password" textAlignment="CENTER" wrappingWidth="647.7367324829102">
+                     <font>
+                        <Font name="Algerian" size="51.0" />
+                     </font>
+                     <fill>
+                        <LinearGradient endX="0.5189394011641993" endY="0.4659090981338964" startX="0.5189393650401721" startY="0.6628787662043715">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.3499999940395355" green="0.03500000014901161" blue="0.03500000014901161" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.6631578803062439" green="0.38807016611099243" blue="0.38807016611099243" opacity="0.8799999952316284" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Text>
+                  <Label layoutX="43.0" layoutY="128.0" prefHeight="39.0" prefWidth="252.0" text="Enter Email">
+                     <font>
+                        <Font name="Century Schoolbook" size="23.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <TextField fx:id="boxResetPasswordEmail" layoutX="43.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Button fx:id="buttonGenerateOTP" layoutX="43.0" layoutY="278.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="466.0" style="-fx-background-color: #6a89cc; -fx-text-fill: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);" text="Generate OTP">
+                     <font>
+                        <Font name="Century Schoolbook" size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label fx:id="labelEnterOTP" layoutX="43.0" layoutY="230.0" prefHeight="39.0" prefWidth="252.0" text="Enter OTP" visible="false">
+                     <font>
+                        <Font name="Century Schoolbook" size="23.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <TextField fx:id="boxEnterOTP" layoutX="43.0" layoutY="269.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Label fx:id="labelNewPassword" layoutX="43.0" layoutY="344.0" prefHeight="39.0" prefWidth="252.0" text="Create New Password" visible="false">
+                     <font>
+                        <Font name="Century Schoolbook" size="23.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient startX="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <TextField fx:id="boxNewPassword" layoutX="43.0" layoutY="383.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Button fx:id="buttonChangePassword" layoutX="43.0" layoutY="481.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="466.0" style="-fx-background-color: #6a89cc; -fx-text-fill: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);" text="Change Password" visible="false">
+                     <font>
+                        <Font name="Century Schoolbook" size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+
+                <!-- Verify OTP Pane -->
+                <Pane fx:id="verifyOTPPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="551.0"
+                      style="-fx-background-color: rgba(224, 247, 250, 0.3); -fx-background-radius: 30; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 20, 0.3, 0, 10); -fx-border-color: rgba(255, 255, 255, 0.2); -fx-border-width: 1; -fx-border-radius: 30;" visible="false">
+                    <children>
+                        <Text layoutX="-40.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verify OTP" textAlignment="CENTER" wrappingWidth="647.7367324829102">
+                            <font>
+                                <Font name="Algerian" size="51.0" />
+                            </font>
+                            <fill>
+                                <LinearGradient endX="0.5189394011641993" endY="0.4659090981338964" startX="0.5189393650401721" startY="0.6628787662043715">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.3499999940395355" green="0.03500000014901161" blue="0.03500000014901161" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.6631578803062439" green="0.38807016611099243" blue="0.38807016611099243" opacity="0.8799999952316284" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                        <Label layoutX="43.0" layoutY="128.0" prefHeight="39.0" prefWidth="252.0" text="Enter OTP">
+                            <font>
+                                <Font name="Century Schoolbook" size="23.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient startX="1.0" startY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Label>
+                        <TextField fx:id="boxVerifyOTP" layoutX="43.0" layoutY="167.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <Button fx:id="buttonVerifyOTP" layoutX="43.0" layoutY="278.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="466.0"
+                                style="-fx-background-color: #6a89cc; -fx-text-fill: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);" text="Verify OTP">
+                            <font>
+                                <Font name="Century Schoolbook" size="21.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                    </children>
+                </Pane>
+
+
+
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>
