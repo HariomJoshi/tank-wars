@@ -3,6 +3,7 @@ package com.tankwars.server.controller;
 
 import com.tankwars.server.model.User;
 import com.tankwars.server.service.AuthService;
+import com.tankwars.server.utils.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,45 +42,46 @@ public class AuthController{
 
     //Verify OTP
     @PostMapping("/verify")
-    public ResponseEntity<String> verifyOtp(@RequestParam String email, @RequestParam String otp) {
+    public ResponseEntity<DTO> verifyOtp(@RequestParam String email, @RequestParam String otp) {
 
-        String resultMessage = authService.verifyOtp(email, otp);
-        if(resultMessage.contains("Invalid") || resultMessage.contains("not found")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultMessage);
+        DTO result = authService.verifyOtp(email, otp);
+        if(!result.success) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
         }
-        return ResponseEntity.ok(resultMessage);
+        return ResponseEntity.ok(result);
     }
 
     //Forgot Password (Send Reset Token)
     @PostMapping("/forgot-password")
-    public ResponseEntity<String> forgotPassword(@RequestParam String email){
-        String resultMessage = authService.forgotPassword(email);
-        if(resultMessage.equals("Email not found")){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resultMessage);
+    public ResponseEntity<DTO> forgotPassword(@RequestParam String email){
+        DTO result = authService.forgotPassword(email);
+        if(!result.success){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         }
-        return ResponseEntity.ok(resultMessage);
+        return ResponseEntity.ok(result);
     }
 
     // Reset Password using Resent Token
     @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestParam String email, @RequestParam String resetToken, @RequestParam String newPassword){
-        String resultMessage = authService.resetPassword(email, resetToken, newPassword);
-        if(resultMessage.equals("Invalid reset token")){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resultMessage);
+    public ResponseEntity<DTO> resetPassword(@RequestParam String email, @RequestParam String resetToken, @RequestParam String newPassword){
+        DTO result = authService.resetPassword(email, resetToken, newPassword);
+        if(!result.success){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
         }
-        return ResponseEntity.ok(resultMessage);
+        return ResponseEntity.ok(result);
     }
 
     // Login with Username and Password
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<DTO> login(@RequestBody User user) {
         User foundUser = authService.findByUsername(user.getUsername());
+        
         if (foundUser != null && passwordEncoder.matches(user.getPassword(), foundUser.getPassword())) {
             if (!foundUser.isVerified()) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Account not verified. Please verify via OTP.");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new DTO("Account not verified. Please verify via OTP.", false));
             }
-            return ResponseEntity.ok("Login successful!");
+            return ResponseEntity.ok(new DTO("Login successful!", true));
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password!");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new DTO("Invalid username or password!", false));
     }
 }

@@ -153,28 +153,28 @@
                         </LinearGradient>
                      </textFill>
                         </Label>
-                        <TextField layoutX="49.0" layoutY="191.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                        <TextField fx:id = "username" layoutX="49.0" layoutY="191.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></TextField>
-                        <TextField layoutX="49.0" layoutY="281.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                        <TextField fx:id = "email" layoutX="49.0" layoutY="281.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                      <font>
                         <Font size="14.0" />
                      </font></TextField>
-                        <TextField layoutX="49.0" layoutY="376.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                        <TextField fx:id = "password" layoutX="49.0" layoutY="376.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                      <font>
                         <Font size="14.0" />
                      </font></TextField>
-                        <TextField layoutX="49.0" layoutY="463.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
+                        <TextField fx:id = "confirmPassword" layoutX="49.0" layoutY="463.0" prefHeight="42.0" prefWidth="466.0" style="-fx-border-style: dashed;">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>

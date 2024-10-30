@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @NoArgsConstructor
 @Document(collection = "users")
-public class User {
+public class User{
     @Id
     private ObjectId id;
     @Indexed(unique = true)

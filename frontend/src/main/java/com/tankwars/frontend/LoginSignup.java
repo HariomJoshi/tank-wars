@@ -1,11 +1,13 @@
 package com.tankwars.frontend;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,8 +22,13 @@ public class LoginSignup extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        setUpInitialWindow(primaryStage);
+    public void start(Stage primaryStage) {
+        try {
+            setUpInitialWindow(primaryStage);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load initial window.");
+        }
     }
 
     private void setUpInitialWindow(Stage stage) throws IOException {
@@ -29,42 +36,46 @@ public class LoginSignup extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1127, 727);
         stage.setTitle("Tank Wars");
         stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setMaximized(true);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false); // Assuming fixed size for the intro screen
+        stage.initStyle(StageStyle.DECORATED);
         stage.show();
 
-        // Get reference to the Text element
+        // Get reference to the Text element (check for null)
         Text welcomeText = (Text) scene.lookup("#welcomeText");
+        if (welcomeText != null) {
+            // Create Scale Transition for the text
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(3), welcomeText);
+            scaleTransition.setFromX(0.0);
+            scaleTransition.setFromY(0.0);
+            scaleTransition.setToX(1.0);
+            scaleTransition.setToY(1.0);
 
-        // Create Scale Transition for the text
-        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(3), welcomeText);
-        scaleTransition.setFromX(0.0);
-        scaleTransition.setFromY(0.0);
-        scaleTransition.setToX(1.0);
-        scaleTransition.setToY(1.0);
+            // Create Fade Transition for the scene
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), scene.getRoot());
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
 
-        // Create Fade Transition for the scene
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), scene.getRoot());
-        fadeOut.setFromValue(1.0);
-        fadeOut.setToValue(0.0);
+            // Combine transitions
+            SequentialTransition sequentialTransition = new SequentialTransition(
+                    scaleTransition,
+                    new PauseTransition(Duration.seconds(1)),
+                    fadeOut
+            );
 
-        // Create a SequentialTransition
-        SequentialTransition sequentialTransition = new SequentialTransition(scaleTransition);
-        // Add a pause after the scale transition
-        sequentialTransition.getChildren().add(new javafx.animation.PauseTransition(Duration.seconds(1)));
-        // Add the fade transition to the sequence
-        sequentialTransition.getChildren().add(fadeOut);
-
-        // Play the entire sequential transition
-        sequentialTransition.setOnFinished(event -> {
-            try {
-                showLoginWindow(stage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        sequentialTransition.play();
+            // Handle end of transition sequence
+            sequentialTransition.setOnFinished(event -> {
+                try {
+                    showLoginWindow(stage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showAlert("Error", "Failed to load login window.");
+                }
+            });
+            sequentialTransition.play();
+        } else {
+            System.out.println("Warning: Text with ID 'welcomeText' not found.");
+            showLoginWindow(stage);
+        }
     }
 
     private void showLoginWindow(Stage stage) throws IOException {
@@ -77,7 +88,14 @@ public class LoginSignup extends Application {
         fadeIn.setToValue(1.0);
 
         stage.setScene(loginScene);
-        stage.setMaximized(true);
+        stage.setResizable(false); // Assuming fixed size for login/signup screen
         fadeIn.play();
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
