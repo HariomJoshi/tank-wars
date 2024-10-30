@@ -65,7 +65,7 @@ public class AuthController{
     @PostMapping("/reset-password")
     public ResponseEntity<DTO> resetPassword(@RequestParam String email, @RequestParam String resetToken, @RequestParam String newPassword){
         DTO result = authService.resetPassword(email, resetToken, newPassword);
-        if(result.success){
+        if(!result.success){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(result);
         }
         return ResponseEntity.ok(result);
