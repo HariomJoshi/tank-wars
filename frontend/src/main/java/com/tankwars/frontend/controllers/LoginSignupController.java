@@ -4,6 +4,7 @@ import com.tankwars.frontend.tankwarsclient.InitializeGame;
 import com.tankwars.frontend.utils.ApiClient;
 import com.tankwars.frontend.utils.Valid;
 import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.scene.transform.Rotate;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -143,22 +145,24 @@ public class LoginSignupController {
                 String fullUrl = "http://localhost:8080/api/auth/forgot-password?"+params;
                 ApiClient client = new ApiClient();
                 client.sendPostReqQuery(fullUrl).thenAccept(res->{
-                    if(Boolean.TRUE.equals(res)){
-                        buttonGenerateOTP.setVisible(false);
-                        boxResetPasswordEmail.setEditable(false);
-                        resetPasswordPane.setPrefWidth(551);
-                        resetPasswordPane.setPrefHeight(727);
-                        labelEnterOTP.setVisible(true);
-                        labelNewPassword.setVisible(true);
-                        boxEnterOTP.setVisible(true);
-                        boxNewPassword.setVisible(true);
-                        buttonChangePassword.setVisible(true);
-                        System.out.println("OTP sent successfully");
+                    Platform.runLater(()->{
+                        if(Boolean.TRUE.equals(res)){
+                            buttonGenerateOTP.setVisible(false);
+                            boxResetPasswordEmail.setEditable(false);
+                            resetPasswordPane.setPrefWidth(551);
+                            resetPasswordPane.setPrefHeight(727);
+                            labelEnterOTP.setVisible(true);
+                            labelNewPassword.setVisible(true);
+                            boxEnterOTP.setVisible(true);
+                            boxNewPassword.setVisible(true);
+                            buttonChangePassword.setVisible(true);
+                            System.out.println("OTP sent successfully");
 
-                    }else{
-                        System.out.println("Not able to send email");
+                        }else{
+                            System.out.println("Not able to send email");
 
-                    }
+                        }
+                    });
                 }).exceptionally(err->{
                     System.out.println("some error occured while sending mail");
                     err.printStackTrace();
@@ -180,19 +184,21 @@ public class LoginSignupController {
             String fullUrl = "http://localhost:8080/api/auth/reset-password?"+params;
             ApiClient client = new ApiClient();
             client.sendPostReqQuery(fullUrl).thenAccept(res->{
-                if(Boolean.TRUE.equals(res)){
-                    System.out.println("Password Reset successfully");
-                    buttonGenerateOTP.setVisible(true);
-                    boxResetPasswordEmail.setEditable(true);
-                    labelEnterOTP.setVisible(false);
-                    labelNewPassword.setVisible(false);
-                    boxEnterOTP.setVisible(false);
-                    boxNewPassword.setVisible(false);
-                    buttonChangePassword.setVisible(false);
-                    flipTransition(resetPasswordPane, loginPane);
-                }else{
-                    System.out.println("Not able to reset password");
-                }
+                Platform.runLater(()->{
+                    if(Boolean.TRUE.equals(res)){
+                        System.out.println("Password Reset successfully");
+                        buttonGenerateOTP.setVisible(true);
+                        boxResetPasswordEmail.setEditable(true);
+                        labelEnterOTP.setVisible(false);
+                        labelNewPassword.setVisible(false);
+                        boxEnterOTP.setVisible(false);
+                        boxNewPassword.setVisible(false);
+                        buttonChangePassword.setVisible(false);
+                        flipTransition(resetPasswordPane, loginPane);
+                    }else{
+                        System.out.println("Not able to reset password");
+                    }
+                });
             }).exceptionally(err->{
                 System.out.println("Some error occured while changing password");
                 err.printStackTrace();
@@ -211,23 +217,30 @@ public class LoginSignupController {
     // button that handles logging in user
     ApiClient client = new ApiClient();
     Valid valid = new Valid();
-    private void handleLoginUser(){
+
+
+
+    private void handleLoginUser() throws RuntimeException{
         HashMap<String, String> mp = new HashMap<>();
         mp.put("username", loginUsername.getText());
         mp.put("password", loginPassword.getText());
         client.sendPostRequest("http://localhost:8080/api/auth/login", mp).thenAccept(res->{
-           if(Boolean.TRUE.equals(res)){
-               // TODO: animation to the dashboard
-//               Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//               alert.setContentText("Successfully logged in");
-//               alert.show();
-               System.out.println("Logged in successful");
-           }else{
-               Alert alert = new Alert(Alert.AlertType.ERROR);
-               alert.setContentText("Username or password wrong");
-               alert.show();
-               System.out.println("Username or password wrong");
-           }
+           Platform.runLater(()->{
+                if(Boolean.TRUE.equals(res)){
+                       // TODO: animation to the dashboard
+                    try {
+                        mainApp.showDashboard();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("Logged in successful");
+               }else{
+                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                   alert.setContentText("Username or password wrong");
+                   alert.show();
+                   System.out.println("Username or password wrong");
+               }
+           });
         }).exceptionally(err->{
             System.out.println("Some error occured while logging user in");
             err.printStackTrace();
@@ -267,26 +280,30 @@ public class LoginSignupController {
         mp.put("password", password.getText());
         mp.put("email", email.getText());
         client.sendPostRequest("http://localhost:8080/api/auth/signup", mp).thenAccept(res-> {
-            if (Boolean.FALSE.equals(res)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Some error occured while sending data, please try again");
-                alert.show();
-                System.out.println("Rejected");
-                return;
-            } else {
-                System.out.println("Accepted");
-                flipTransition(signupPane, verifyOTPPane);
-                buttonVerifyOTP.setOnAction(e->{
-                    verifyEmail(email.getText(), boxVerifyOTP.getText()).thenAccept(result->{
-                        if(Boolean.FALSE.equals(result)){
-                            System.out.println("OTP verification failed");
-                        }else{
-                            System.out.println("verification successful");
-                            flipTransition(verifyOTPPane, loginPane);
-                        }
+            Platform.runLater(()->{
+                if (Boolean.FALSE.equals(res)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Some error occured while sending data, please try again");
+                    alert.show();
+                    System.out.println("Rejected");
+                    return;
+                } else {
+                    System.out.println("Accepted");
+                    flipTransition(signupPane, verifyOTPPane);
+                    buttonVerifyOTP.setOnAction(e->{
+                        verifyEmail(email.getText(), boxVerifyOTP.getText()).thenAccept(result->{
+                            Platform.runLater(()->{
+                                if(Boolean.FALSE.equals(result)){
+                                    System.out.println("OTP verification failed");
+                                }else{
+                                    System.out.println("verification successful");
+                                    flipTransition(verifyOTPPane, loginPane);
+                                }
+                            });
+                        });
                     });
-                });
-            }
+                }
+            });
         }).exceptionally(err->{
             System.out.println("Some error occured is signup");
             err.printStackTrace();
@@ -310,7 +327,7 @@ public class LoginSignupController {
 
         }).exceptionally(err->{
             System.out.println("Some error occured in verify email");
-            System.out.println(err);
+            err.printStackTrace();
             return false;
         });
     }
@@ -326,8 +343,12 @@ public class LoginSignupController {
         }
     }
 
-
+    // reference of the previous class, since it has been initialized,
+    // we cannot initialize it again, we need the reference of that class only
+    private InitializeGame mainApp;
     public void setMainApp(InitializeGame gameWindow) {
-
+        mainApp = gameWindow;
     }
+
+
 }

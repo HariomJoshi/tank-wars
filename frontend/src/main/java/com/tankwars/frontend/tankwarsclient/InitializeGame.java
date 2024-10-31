@@ -65,7 +65,6 @@ public class InitializeGame extends Application {
     private void showLoginWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/login-signup-scene.fxml"));
         Scene loginScene = new Scene(fxmlLoader.load());
-
         // Ensure that the controller is assigned
         LoginSignupController controller = fxmlLoader.getController();
         if (controller == null) {
@@ -80,6 +79,7 @@ public class InitializeGame extends Application {
             throw new IllegalStateException("FXML root layout might be invalid.");
         }
 
+
         // Transition Effects
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), loginScene.getRoot());
         fadeIn.setFromValue(0.0);
@@ -91,7 +91,7 @@ public class InitializeGame extends Application {
         fadeIn.play();
     }
 
-    private void showDashboard() throws IOException {
+    public void showDashboard() throws IOException {
         FXMLLoader dashboardLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/dashboard-main.fxml"));
         Scene dashboard = new Scene(dashboardLoader.load());
         dashboard.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
@@ -100,5 +100,6 @@ public class InitializeGame extends Application {
         primaryStage.setScene(dashboard);
         primaryStage.setMaximized(true);
     }
+
 
 }
