@@ -1,5 +1,6 @@
-package com.tankwars.frontend;
+package com.tankwars.frontend.controllers;
 
+import com.tankwars.frontend.tankwarsclient.InitializeGame;
 import com.tankwars.frontend.utils.ApiClient;
 import com.tankwars.frontend.utils.Valid;
 import javafx.animation.RotateTransition;
@@ -10,13 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
-import javafx.scene.shape.VLineTo;
+import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.scene.transform.Rotate;
 
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.regex.Pattern;
 
 public class LoginSignupController {
 
@@ -64,6 +65,9 @@ public class LoginSignupController {
     private Button loginButton;
 
     @FXML
+    private Button buttonExitGame;
+
+    @FXML
     public void initialize() {
         registerLink.setOnAction(event -> {
             flipTransition(loginPane, signupPane);
@@ -93,10 +97,15 @@ public class LoginSignupController {
             handleLoginUser();
         });
 
+        buttonExitGame.setOnAction(e->{
+            handleExitGame();
+        });
+
     }
 
     private void flipTransition(Node currentPane, Node nextPane) {
         // Rotate current pane to 90 degrees to hide
+
         RotateTransition hideCurrent = new RotateTransition(Duration.millis(500), currentPane);
         hideCurrent.setAxis(Rotate.Y_AXIS); // Flip on the Y-axis
         hideCurrent.setFromAngle(0);
@@ -304,5 +313,21 @@ public class LoginSignupController {
             System.out.println(err);
             return false;
         });
+    }
+
+    // function to exit the game
+    private void handleExitGame() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.OK, ButtonType.CANCEL);
+        alert.setHeaderText("Confirm exit");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            System.exit(0);
+        }
+    }
+
+
+    public void setMainApp(InitializeGame gameWindow) {
+
     }
 }
