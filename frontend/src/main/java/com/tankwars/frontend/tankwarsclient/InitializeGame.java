@@ -63,22 +63,35 @@ public class InitializeGame extends Application {
     }
 
     private void showLoginWindow() throws IOException {
-        System.out.println("Here");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/login-signup-scene.fxml"));
-        System.out.println("Here 2");
         Scene loginScene = new Scene(fxmlLoader.load());
-        System.out.println("Here 3");
+        // Ensure that the controller is assigned
         LoginSignupController controller = fxmlLoader.getController();
-        controller.setMainApp(this);  // Passing reference to LoginSignup (main app)
+        if (controller == null) {
+            throw new IllegalStateException("Controller not found in FXML file.");
+        }
+
+        // Set reference to the main application if needed
+        controller.setMainApp(this);
+
+        // Optionally, validate scene content if there are specific requirements
+        if (loginScene.getRoot() == null) {
+            throw new IllegalStateException("FXML root layout might be invalid.");
+        }
+
+
+        // Transition Effects
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), loginScene.getRoot());
         fadeIn.setFromValue(0.0);
-        fadeIn.setToValue(1.0);;
+        fadeIn.setToValue(1.0);
+
+        // Set the new scene on primary stage
         primaryStage.setScene(loginScene);
         primaryStage.setMaximized(true);
         fadeIn.play();
     }
 
-    private void showDashboard() throws IOException {
+    public void showDashboard() throws IOException {
         FXMLLoader dashboardLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/dashboard-main.fxml"));
         Scene dashboard = new Scene(dashboardLoader.load());
         dashboard.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
@@ -87,5 +100,6 @@ public class InitializeGame extends Application {
         primaryStage.setScene(dashboard);
         primaryStage.setMaximized(true);
     }
+
 
 }
