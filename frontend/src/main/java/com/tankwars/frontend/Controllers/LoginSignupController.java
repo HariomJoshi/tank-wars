@@ -1,19 +1,20 @@
-package com.tankwars.frontend;
+package com.tankwars.frontend.controllers;
 
+import com.tankwars.frontend.tankwarsclient.InitializeGame;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.Button;
 import javafx.util.Duration;
 import javafx.scene.transform.Rotate;
 
+import java.util.Optional;
+
 public class LoginSignupController {
 
-
+    @FXML
+    private Button buttonExitGame;
     // attributes for OTP verification
     @FXML
     private Pane verifyOTPPane;
@@ -71,7 +72,22 @@ public class LoginSignupController {
         buttonRegisterUser.setOnAction(e->{
             handleRegisterUser();
         });
+
+        buttonExitGame.setOnAction(e->{
+            handleExitGame();
+        });
     }
+
+    private void handleExitGame() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.OK, ButtonType.CANCEL);
+        alert.setHeaderText("Confirm exit");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            System.exit(0);
+        }
+    }
+
 
     private void flipTransition(Node currentPane, Node nextPane) {
         // Rotate current pane to 90 degrees to hide
@@ -127,5 +143,9 @@ public class LoginSignupController {
             alert.setContentText("OTP verification working");
             alert.show();
         });
+    }
+
+    public void setMainApp(InitializeGame gameWindow) {
+
     }
 }
