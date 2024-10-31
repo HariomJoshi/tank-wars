@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e52a8204-1560-48f4-8ad9-167948fb4739" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../backend/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/utils/DTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/target/classes/com/tankwars/server/utils/DTO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/target/test-classes/com/tankwars/server/TankGameApplicationTests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tankwars/frontend/utils/ApiClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tankwars/frontend/utils/Valid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/login-signup-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/tankwars/server/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/test/java/com/tankwars/server/ServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/test/java/com/tankwars/server/TankGameApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/tankwars/server/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/tankwars/server/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/tankwars/server/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/tankwars/server/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/com/tankwars/server/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/com/tankwars/server/service/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/test-classes/com/tankwars/server/ServerApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tankwars/frontend/LoginSignup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tankwars/frontend/LoginSignup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tankwars/frontend/LoginSignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tankwars/frontend/LoginSignupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tankwars/frontend/login-signup-scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tankwars/frontend/login-signup-scene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging master",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/singh/Desktop/projects/backend",
     "project.structure.last.edited": "Libraries",
