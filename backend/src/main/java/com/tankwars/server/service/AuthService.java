@@ -1,11 +1,11 @@
 package com.tankwars.server.service;
 
 
-
 import com.tankwars.server.model.User;
 import com.tankwars.server.repository.UserRepository;
 
 
+import com.tankwars.server.utils.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
-import java.util.regex.Pattern;
 
 @Service
 public class AuthService {
@@ -26,9 +25,6 @@ public class AuthService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-
-
 
     // Generate 6 digit OTP
     private  String generateOtp(){
@@ -57,15 +53,15 @@ public class AuthService {
     }
 
     // Register User with OTP verification
-    public String register(User user){
+    public DTO register(User user){
 
 
         if(usernameExists(user.getUsername())){
-            return "Username already exists.";
+            return new DTO( "Username already exists.", false);
         }
 
         if(emailExists(user.getEmail())){
-            return "Email already exists.";
+            return new DTO("Email already exists.", false);
         }
 
         user.setOtp(generateOtp());
@@ -73,52 +69,52 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));  // Encrypt password
         userRepository.save(user);
         sendOtp(user.getEmail(), user.getOtp());
-        return "User registered. Please verify with OTP sent to your registered email.";
+        return new DTO("User registered. Please verify with OTP sent to your registered email.", false);
     }
 
     // Verify OTP
-    public String verifyOtp(String email, String otp){
+    public DTO verifyOtp(String email, String otp){
         User user = userRepository.findByEmail(email);
         if(user == null){
-            return "Email not found.";
+            return new DTO("Email not found", false);
         }
 
         if(!otp.equals(user.getOtp())){
-            return "Invalid OTP.";
+            return new DTO("Invalid OTP", false);
         }
 
         user.setVerified(true);
         user.setOtp(null);
         userRepository.save(user);
-        return "User verified successfully.";
+        return new DTO("User verified successfully", true);
     }
 
     // Forgot Password (Generate Reset Token)
-    public String forgotPassword(String email){
+    public DTO forgotPassword(String email){
         User user = userRepository.findByEmail(email);
         if(user == null){
-            return "Email not found";
+            return new DTO("Email not found", false);
         }
 
         String resetToken = generateOtp();
         user.setResetToken(resetToken);
         userRepository.save(user);
         sendOtp(email, resetToken);
-        return "Reset token sent to email";
+        return new DTO("Reset token sent to email", true);
     }
 
 
     // Reset Password using reset token
-    public String resetPassword(String email, String resetToken, String newPassword){
+    public DTO resetPassword(String email, String resetToken, String newPassword){
         User user = userRepository.findByResetToken(resetToken);
         if(user == null || !user.getEmail().equals(email)){
-            return "Invalid reset token.";
+            return new DTO("Invalid reset token.", false);
         }
 
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setResetToken(null);
         userRepository.save(user);
-        return "Password reset successfully.";
+        return new DTO("Password reset successfully.", true);
     }
 
     // find user by username

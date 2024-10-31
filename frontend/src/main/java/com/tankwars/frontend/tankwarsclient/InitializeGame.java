@@ -1,6 +1,5 @@
 package com.tankwars.frontend.tankwarsclient;
 
-//import com.tankwars.frontend.LoginSignup;
 import com.tankwars.frontend.controllers.DashboardMainController;
 import com.tankwars.frontend.controllers.LoginSignupController;
 import javafx.animation.FadeTransition;
@@ -55,7 +54,7 @@ public class InitializeGame extends Application {
         SequentialTransition sequentialTransition = new SequentialTransition(scaleTransition, fadeOut);
         sequentialTransition.setOnFinished(event -> {
             try {
-                showDashboard();
+                showLoginWindow();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -64,16 +63,16 @@ public class InitializeGame extends Application {
     }
 
     private void showLoginWindow() throws IOException {
+        System.out.println("Here");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/login-signup-scene.fxml"));
+        System.out.println("Here 2");
         Scene loginScene = new Scene(fxmlLoader.load());
-
+        System.out.println("Here 3");
         LoginSignupController controller = fxmlLoader.getController();
         controller.setMainApp(this);  // Passing reference to LoginSignup (main app)
-
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), loginScene.getRoot());
         fadeIn.setFromValue(0.0);
-        fadeIn.setToValue(1.0);
-
+        fadeIn.setToValue(1.0);;
         primaryStage.setScene(loginScene);
         primaryStage.setMaximized(true);
         fadeIn.play();
@@ -88,4 +87,5 @@ public class InitializeGame extends Application {
         primaryStage.setScene(dashboard);
         primaryStage.setMaximized(true);
     }
+
 }
