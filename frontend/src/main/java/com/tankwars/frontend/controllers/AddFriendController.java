@@ -1,7 +1,9 @@
 package com.tankwars.frontend.controllers;
 
+import com.tankwars.frontend.tankwarsclient.Animations;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,8 +23,17 @@ public class AddFriendController {
     @FXML
     private Button buttonAddUserIfExists;
 
+    private Scene previousScene;
+
+    // Setter for the previous scene
+    public void setPreviousScene(Scene previousScene) {
+        this.previousScene = previousScene;
+    }
+
     @FXML
     public void initialize(){
+        buttonSearchUser.setOnMouseEntered(e->Animations.mouseEnterTransition(buttonSearchUser));
+        buttonSearchUser.setOnMouseExited(e->Animations.mouseExitTransition(buttonSearchUser));
         buttonSearchUser.setOnAction(e->{
             boxUsername.setEditable(false);
             boolean exists = handleSearchUser(boxUsername.getText());
@@ -37,16 +48,25 @@ public class AddFriendController {
         });
 
         buttonAddUserIfExists.setOnAction(e->handleAddFriend(boxUsername.getText()));
+        buttonAddUserIfExists.setOnMouseEntered(e->Animations.mouseEnterTransition(buttonAddUserIfExists));
+        buttonAddUserIfExists.setOnMouseExited(e->Animations.mouseExitTransition(buttonAddUserIfExists));
+
         buttonOkayIfNotExists.setOnAction(e->handleOkay());
+        buttonOkayIfNotExists.setOnMouseEntered(e->Animations.mouseEnterTransition(buttonOkayIfNotExists));
+        buttonOkayIfNotExists.setOnMouseExited(e->Animations.mouseExitTransition(buttonOkayIfNotExists));
+
         buttonBack.setOnAction(e->handleReturn((Node) e.getSource()));
+        buttonBack.setOnMouseEntered(e->Animations.mouseEnterTransition(buttonBack));
+        buttonBack.setOnMouseExited(e->Animations.mouseExitTransition(buttonBack));
     }
 
     private void handleReturn(Node node) {
         // Get the currently active stage (topmost)
-        Stage currentStage = (Stage) node.getScene().getWindow(); // Replace someNode with a reference to a node in the current scene
+        Stage currentStage = (Stage) node.getScene().getWindow();
 
-        if (currentStage != null) {
-            currentStage.close(); // Close the current stage
+        if (previousScene != null && currentStage != null) {
+//            currentStage.setScene(previousScene); // Set the previous scene
+            Animations.fadeScenes(currentStage, currentStage.getScene(), previousScene);
         }
     }
 
