@@ -75,7 +75,7 @@ public class AuthController{
     @PostMapping("/login")
     public ResponseEntity<DTO> login(@RequestBody User user) {
         User foundUser = authService.findByUsername(user.getUsername());
-        
+
         if (foundUser != null && passwordEncoder.matches(user.getPassword(), foundUser.getPassword())) {
             if (!foundUser.isVerified()) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new DTO("Account not verified. Please verify via OTP.", false));
