@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="865.0" prefWidth="1535.0" style="-fx-background-color: black;" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tankwars.frontend.controllers.DashboardMainController">
+   <children>
+      <StackPane prefHeight="865.0" prefWidth="1535.0">
+         <children>
+            <ImageView fitHeight="865.0" fitWidth="1535.0" opacity="0.86" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../images/bg_dashboard.jpg" />
+               </image>
+            </ImageView>
+            <VBox alignment="TOP_CENTER" prefHeight="865.0" prefWidth="1535.0" spacing="20">
+               <!-- Title AnchorPane -->
+               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="1918.0" style="-fx-background-color: none;">
+                  <children>
+                     <Text fx:id="headerDashboard" layoutX="379.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TANK WARS" textAlignment="CENTER" wrappingWidth="774.1367492675781">
+                        <font>
+                           <Font name="Algerian" size="128.0" />
+                        </font>
+                        <fill>
+                           <LinearGradient endX="0.25000001083720813" endY="0.3371211759971849" startX="0.250000043800383" startY="0.8143939247185532">
+                              <stops>
+                                 <Stop>
+                                    <color>
+                                       <Color red="0.550000011920929" green="0.0989999994635582" blue="0.0989999994635582" />
+                                    </color>
+                                 </Stop>
+                                 <Stop offset="1.0">
+                                    <color>
+                                       <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                 </Stop>
+                              </stops>
+                           </LinearGradient>
+                        </fill>
+                     </Text>
+                  </children>
+               </AnchorPane>
+               <!-- Main Content AnchorPane with Buttons -->
+               <AnchorPane prefHeight="645.0" prefWidth="1535.0">
+                  <children>
+                     <ImageView fitHeight="368.0" fitWidth="551.0" layoutX="936.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../images/tank2.png" />
+                        </image>
+                     </ImageView>
+                     <VBox alignment="TOP_CENTER" layoutX="223.0" layoutY="198.0" prefHeight="412.0" prefWidth="572.0" spacing="18.0" style="-fx-background-color: transparent;">
+                        <children>
+                           <Button fx:id="buttonPlayWithComputer" mnemonicParsing="false" prefHeight="76.0" prefWidth="521.0" styleClass="dashboard_buttons" text="PLAY WITH COMPUTER">
+                              <font>
+                                 <Font name="Algerian" size="32.0" />
+                              </font>
+                           </Button>
+                           <Button fx:id="buttonManageFriends" mnemonicParsing="false" prefHeight="76.0" prefWidth="521.0" styleClass="dashboard_buttons" text="MANAGE FRIENDS">
+                              <font>
+                                 <Font name="Algerian" size="32.0" />
+                              </font>
+                           </Button>
+                           <Button fx:id="buttonGameHistory" mnemonicParsing="false" prefHeight="76.0" prefWidth="521.0" styleClass="dashboard_buttons" text="GAME HISTORY">
+                              <font>
+                                 <Font name="Algerian" size="32.0" />
+                              </font>
+                           </Button>
+                           <Button fx:id="buttonExitGame" mnemonicParsing="false" prefHeight="76.0" prefWidth="521.0" styleClass="dashboard_buttons" text="EXIT GAME">
+                              <font>
+                                 <Font name="Algerian" size="32.0" />
+                              </font>
+                           </Button>
+                        </children>
+                        <padding>
+                           <Insets top="25.0" />
+                        </padding>
+                     </VBox>
+                     <Button fx:id="buttonGameInvites" layoutX="1092.0" layoutY="599.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="332.0" text="Game Invites" textAlignment="CENTER">
+                        <font>
+                           <Font name="Algerian" size="27.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </AnchorPane>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
