@@ -2,6 +2,7 @@ package com.tankwars.frontend.controllers;
 
 import com.tankwars.frontend.tankwarsclient.Animations;
 import com.tankwars.frontend.tankwarsclient.InitializeGame;
+import com.tankwars.frontend.utils.User;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
@@ -37,6 +38,7 @@ public class DashboardMainController {
     private Button buttonExitGame;
     @FXML
     private Text headerDashboard;
+
 
     private final List<Button> dashboardActions = new ArrayList<>();
     private ListView<Invite> listGameInvites = new ListView<>();
@@ -137,6 +139,12 @@ public class DashboardMainController {
         mainApp = game;
     }
 
+
+
+
+
+
+
     // Custom cell for displaying invites
     class InviteCell extends ListCell<Invite> {
         @Override
@@ -183,6 +191,8 @@ public class DashboardMainController {
             }
         }
     }
+
+
 
     // Invite class to represent game invites
     class Invite {

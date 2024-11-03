@@ -3,6 +3,7 @@ package com.tankwars.frontend.tankwarsclient;
 import com.tankwars.frontend.controllers.DashboardMainController;
 import com.tankwars.frontend.controllers.GameWindow;
 import com.tankwars.frontend.controllers.LoginSignupController;
+import com.tankwars.frontend.utils.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
@@ -28,6 +29,8 @@ public class InitializeGame extends Application {
         this.primaryStage = stage;
         setUpInitialWindow();
     }
+
+    private User currentUser = User.getInstance();
 
     private void setUpInitialWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/initial-page.fxml"));
