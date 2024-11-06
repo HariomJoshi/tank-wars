@@ -1,8 +1,11 @@
 package com.tankwars.frontend.controllers;
 
+import com.tankwars.frontend.client.StompClient;
+import com.tankwars.frontend.models.InviteMessage;
 import com.tankwars.frontend.tankwarsclient.Animations;
 import com.tankwars.frontend.utils.ApiClient;
 import com.tankwars.frontend.utils.Constants;
+import com.tankwars.frontend.utils.RandomString;
 import com.tankwars.frontend.utils.User;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -135,8 +138,13 @@ public class FriendsController {
                 });
 
                 // Invite a user here
+                StompClient client = StompClient.getInstance();
                 inviteButton.setOnAction(event -> {
                     System.out.println(friend.getUsername() + " invited.");
+                    String url = "/app/game/" + RandomString.generateRandomString() + "/invite";
+                    System.out.println("Hariom sent to URL: " + url);
+                    client.sendMessage(url, new InviteMessage(currentUser.getUsername(), friend.getUsername()));
+                    System.out.println("Invitation sent from :" + currentUser.getUsername());
                 });
 
                 // Add components to the layout

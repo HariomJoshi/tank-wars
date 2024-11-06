@@ -18,29 +18,19 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers(
-//                                "/",
-//                                "/api/auth/verify",
-//                                "/api/auth/signup",
-//                                "/api/auth/login",
-//                                "/api/auth/forgot-password",
-//                                "/api/auth/reset-password"
-//                        )
-//                        .permitAll()
+                        .requestMatchers("/game/**").permitAll() // Allow WebSocket connections
                         .anyRequest().permitAll()
-//                        .authenticated()
                 )
                 .httpBasic(httpBasic -> {});
 
         return http.build();
     }
+
+
 }
-
-
