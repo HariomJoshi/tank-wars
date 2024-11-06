@@ -1,7 +1,9 @@
 package com.tankwars.frontend.controllers;
 
+import com.tankwars.frontend.client.StompClient;
 import com.tankwars.frontend.tankwarsclient.Animations;
 import com.tankwars.frontend.tankwarsclient.InitializeGame;
+import com.tankwars.frontend.utils.Constants;
 import com.tankwars.frontend.utils.User;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 public class DashboardMainController {
     @FXML
@@ -39,7 +42,7 @@ public class DashboardMainController {
     @FXML
     private Text headerDashboard;
 
-
+    private User currentUser = User.getInstance();
     private final List<Button> dashboardActions = new ArrayList<>();
     private ListView<Invite> listGameInvites = new ListView<>();
     private Popup invites = new Popup();
@@ -80,6 +83,19 @@ public class DashboardMainController {
         listGameInvites.setPrefHeight(400);
         listGameInvites.setPrefWidth(332);
         invites.getContent().add(listGameInvites);
+
+        // connecting to the websocket server
+        // handling the websocket connections in a separate thread
+        StompClient client = StompClient.getInstance();
+        new Thread(() -> {
+            try {
+                client.connect(currentUser.getUsername());
+
+            } catch (ExecutionException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+
     }
 
     private void clickGameInvites() {
@@ -131,11 +147,6 @@ public class DashboardMainController {
     }
 
 
-
-
-
-
-
     // Custom cell for displaying invites
     class InviteCell extends ListCell<Invite> {
         @Override
@@ -182,7 +193,6 @@ public class DashboardMainController {
             }
         }
     }
-
 
 
     // Invite class to represent game invites
