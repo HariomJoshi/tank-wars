@@ -1,7 +1,9 @@
 package com.tankwars.frontend.controllers;
 
+import com.tankwars.frontend.tankwarsclient.Animations;
 import com.tankwars.frontend.tankwarsclient.InitializeGame;
 import com.tankwars.frontend.utils.ApiClient;
+import com.tankwars.frontend.utils.User;
 import com.tankwars.frontend.utils.Valid;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
@@ -69,18 +71,20 @@ public class LoginSignupController {
     @FXML
     private Button buttonExitGame;
 
+    private User currentUser = User.getInstance();
+
     @FXML
     public void initialize() {
         registerLink.setOnAction(event -> {
-            flipTransition(loginPane, signupPane);
+            Animations.flipTransition(loginPane, signupPane);
         });
 
         resetLink.setOnAction(event->{
-            flipTransition(loginPane, resetPasswordPane);
+            Animations.flipTransition(loginPane, resetPasswordPane);
         });
 
         loginLink.setOnAction(event -> {
-            flipTransition(signupPane, loginPane);
+            Animations.flipTransition(signupPane, loginPane);
         });
 
         buttonGenerateOTP.setOnAction(e->{
@@ -103,31 +107,6 @@ public class LoginSignupController {
             handleExitGame();
         });
 
-    }
-
-    private void flipTransition(Node currentPane, Node nextPane) {
-        // Rotate current pane to 90 degrees to hide
-
-        RotateTransition hideCurrent = new RotateTransition(Duration.millis(500), currentPane);
-        hideCurrent.setAxis(Rotate.Y_AXIS); // Flip on the Y-axis
-        hideCurrent.setFromAngle(0);
-        hideCurrent.setToAngle(90);
-        hideCurrent.setOnFinished(event -> {
-            currentPane.setVisible(false);
-            nextPane.setVisible(true);
-
-            // Reset the next pane to start from a 90-degree angle
-            nextPane.setRotate(-90);
-
-            // Rotate the next pane back to 0 degrees to show
-            RotateTransition showNext = new RotateTransition(Duration.millis(500), nextPane);
-            showNext.setAxis(Rotate.Y_AXIS); // Flip on the Y-axis
-            showNext.setFromAngle(-90);
-            showNext.setToAngle(0);
-            showNext.play();
-        });
-
-        hideCurrent.play();
     }
 
     private void handleSendOtp(){
@@ -194,7 +173,7 @@ public class LoginSignupController {
                         boxEnterOTP.setVisible(false);
                         boxNewPassword.setVisible(false);
                         buttonChangePassword.setVisible(false);
-                        flipTransition(resetPasswordPane, loginPane);
+                        Animations.flipTransition(resetPasswordPane, loginPane);
                     }else{
                         System.out.println("Not able to reset password");
                     }
@@ -229,6 +208,7 @@ public class LoginSignupController {
                 if(Boolean.TRUE.equals(res)){
                        // TODO: animation to the dashboard
                     try {
+                        currentUser.setUsername(loginUsername.getText());
                         mainApp.showDashboard();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -289,7 +269,7 @@ public class LoginSignupController {
                     return;
                 } else {
                     System.out.println("Accepted");
-                    flipTransition(signupPane, verifyOTPPane);
+                    Animations.flipTransition(signupPane, verifyOTPPane);
                     buttonVerifyOTP.setOnAction(e->{
                         verifyEmail(email.getText(), boxVerifyOTP.getText()).thenAccept(result->{
                             Platform.runLater(()->{
@@ -297,7 +277,7 @@ public class LoginSignupController {
                                     System.out.println("OTP verification failed");
                                 }else{
                                     System.out.println("verification successful");
-                                    flipTransition(verifyOTPPane, loginPane);
+                                    Animations.flipTransition(verifyOTPPane, loginPane);
                                 }
                             });
                         });
@@ -349,6 +329,8 @@ public class LoginSignupController {
     public void setMainApp(InitializeGame gameWindow) {
         mainApp = gameWindow;
     }
+
+
 
 
 }

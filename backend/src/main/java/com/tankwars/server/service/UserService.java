@@ -15,14 +15,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    // method to check the existence of a user
-    public DTO userExists(String username){
-        User user = userRepository.findByUsername(username);
-        if(user == null){
-            return new DTO("No user found with the given username", false);
-        }
-        return new DTO("User found", true);
-    }
 
 
     // Method to send a friend request
@@ -85,27 +77,5 @@ public class UserService {
         userRepository.save(requester);
 
         return new DTO("Friend request accepted.",true);
-
     }
-
-    // Method to reject friend request
-    public DTO rejectFriendRequest(String currentUsername, String requesterUsername){
-        User currentUser = userRepository.findByUsername(currentUsername);
-        User requester = userRepository.findByUsername(requesterUsername);
-
-        if(currentUser == null || requester ==null){
-            return new DTO("User not found.", false);
-        }
-
-        if(!currentUser.getPendingFriends().contains(requesterUsername)){
-            return new DTO("Request not found.",false);
-        }
-
-        currentUser.getPendingFriends().remove(requesterUsername);
-
-        userRepository.save(currentUser);
-
-        return new DTO("Friend request rejected.", true);
-    }
-
 }
