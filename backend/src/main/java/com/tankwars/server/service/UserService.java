@@ -79,7 +79,7 @@ public class UserService {
         return new DTO("Friend request accepted.",true);
     }
 
-
+    // changes here are also not getting tracked
     // method to check the existence of a user
     public DTO userExists(String username){
         User user = userRepository.findByUsername(username);
