@@ -1,7 +1,18 @@
 package com.tankwars.frontend.controllers;
 
+
+//import com.tankwars.frontend.tankwarsclient.Projectile;
+import com.tankwars.frontend.tankwarsclient.Tank;
+//import com.tankwars.frontend.tankwarsclient.weapons.CannonBall;
+//import com.tankwars.frontend.tankwarsclient.weapons.Napalm;
+//import com.tankwars.frontend.tankwarsclient.weapons.Weapon;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
+
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,10 +24,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.text.Font;
+
+import javafx.stage.Stage;
+
+import java.util.Arrays;
+import java.util.List;
+
 import java.util.Optional;
 
 public class GameController extends AnchorPane {
+
+
+    private final Stage source;
 
     private ChoiceBox<String> weapons;
     private Label labelWeightValue;
@@ -26,19 +45,56 @@ public class GameController extends AnchorPane {
     private Label labelPower;
     private Button buttonPower;
 
-    private int angle, power;
+
+    private int angle, power, weight, damage;
+
     private HBox mainControls;      // Original controls panel
     private HBox angleControlsPanel; // Angle controls panel
     private HBox powerControlsPanel; // Power controls panel
 
-    public GameController() {
+
+    private Tank user;
+    private boolean isProjectileInMotion = false;
+    private boolean gameEnded = false;
+    private int currentTurn = 0;
+
+    public GameController(Tank user, Stage source) {
         initializeMainControls();
+//        initializeWeapons();
+
         initializeAngleControlsPanel();
         initializePowerControlsPanel();
         setupKeyControls();
         this.requestFocus(); // Request focus for key controls
+
+        this.user = user;
+        this.source = source;
         buttonFire.setOnAction(e->handleFireWeapon());
     }
+
+//    private void initializeWeapons() {
+//        // Dynamically add all subclasses of Weapon to the ChoiceBox
+//        List<Class<? extends Weapon>> weaponClasses = Arrays.asList(CannonBall.class, Napalm.class);
+//
+//        // Add instances of each subclass to the ChoiceBox
+//        for (Class<? extends Weapon> weaponClass : weaponClasses) {
+//            try {
+//                Weapon weapon = weaponClass.getDeclaredConstructor().newInstance();
+//                weapons.getItems().add(weapon);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        // Set a default selection
+//        weapons.setValue(weapons.getItems().get(0));
+//        weapons.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+//            labelWeightValue.setText(newValue.getWeight()+"");
+//            this.weight = newValue.getWeight();
+//            this.damage = newValue.getDamage();
+//        }));
+//    }
+
 
     private void initializeMainControls() {
         // Main control container
@@ -118,12 +174,16 @@ public class GameController extends AnchorPane {
         AnchorPane.setRightAnchor(mainControls, 0.0);
     }
 
-    private void exitGame() {
+
+    private void exitGame(){
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Confirm exit" ,ButtonType.OK, ButtonType.CANCEL);
         Optional<ButtonType> response = alert.showAndWait();
         if(response.isPresent() && response.get()==ButtonType.OK){
             Platform.exit();
-            System.exit(1);
+
+           System.exit(1);
+
         }
     }
 
@@ -279,8 +339,34 @@ public class GameController extends AnchorPane {
     }
 
     private void handleFireWeapon() {
-        System.out.println("Fire button working");
-        freezeControls();
-//        unFreezeControls();
+
+//        System.out.println("Fire button working");
+//        freezeControls();
+////        unFreezeControls();
+//        Projectile projectile = new Projectile(angle, power, weight, user.getLayoutX(), user.getLayoutY(), source);
+//        List<Point2D> path = projectile.calculateTrajectoryPoints(projectile);
     }
+//
+//    private void fireProjectile() {
+//        if(isProjectileInMotion || gameEnded){
+//            return; // Prevent firing if a projectile is already in motion or the game has ended
+//        }
+//
+//        try {
+//            if(currentTurn == 0) {
+//                fireTankProjectile(angle, power, weight);
+//
+////                switchTurns();
+//            }
+//
+//        }
+//        catch (NumberFormatException e){
+//            System.out.println("Please enter valid numerical values");
+//        }
+//    }
+//
+//    public void fireTankProjectile(double angle, double power, double weight){
+//        visualizeProjectile(angle, power, weight);
+//    }
+
 }

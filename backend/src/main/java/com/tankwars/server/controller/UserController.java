@@ -63,6 +63,9 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
+
+    // why are these changes not getting tracked?
+
     // check the user existence
     @PostMapping("/userExists")
     public ResponseEntity<DTO> checkUserExists(@RequestParam String username){
@@ -82,5 +85,6 @@ public class UserController {
         }
         return ResponseEntity.ok(result);
     }
+
 
 }
