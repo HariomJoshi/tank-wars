@@ -4,7 +4,6 @@ import com.tankwars.frontend.utils.Constants;
 import com.tankwars.frontend.utils.User;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.simp.stomp.StompSession;
-import org.springframework.messaging.simp.stomp.StompSessionHandler;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
@@ -19,7 +18,6 @@ import java.util.concurrent.ExecutionException;
 
 public class StompClient {
     private static StompClient stompClient;
-
     private StompClient() {
     }
 
@@ -34,15 +32,15 @@ public class StompClient {
 
     public void connect(String username) throws ExecutionException, InterruptedException {
         // Define the WebSocket endpoint, same as configured in your Spring backend
-        String url = Constants.BACKEND_URL_WS + "?username=" + User.getInstance().getUsername();
+        String url = Constants.BACKEND_URL_WS;
 
 
         List<Transport> transports = new ArrayList<>();
         transports.add(new WebSocketTransport(new StandardWebSocketClient()));
         SockJsClient sockJsClient = new SockJsClient(transports);
 
-//        WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
-//        headers.add("username", User.getInstance().getUsername());
+        WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
+        headers.add("username", User.getInstance().getUsername());
         WebSocketStompClient stompClient = new WebSocketStompClient(sockJsClient);
         stompClient.setMessageConverter(new MappingJackson2MessageConverter());
 

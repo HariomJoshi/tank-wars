@@ -15,7 +15,7 @@ public class CustomStompSessionHandler extends StompSessionHandlerAdapter {
 
     private final String username;
 
-    public CustomStompSessionHandler(String username) {
+    public CustomStompSessionHandler(String username)  {
         this.username = username;
     }
 
@@ -28,6 +28,7 @@ public class CustomStompSessionHandler extends StompSessionHandlerAdapter {
 
         // Register the user by sending a message to the /app/register endpoint
         session.send("/app/register", username);
+        System.out.println("Session id for " + username+ " is : " +session.getSessionId());
 
         // Subscribe to a game topic or user queue to receive messages
         session.subscribe("/topic/game/{roomId}", new StompFrameHandler() {
@@ -38,17 +39,28 @@ public class CustomStompSessionHandler extends StompSessionHandlerAdapter {
 
             @Override
             public void handleFrame(StompHeaders headers, Object payload) {
-                GameState updatedState = (GameState) payload;
-                Platform.runLater(() -> {
-                    // this should be on a seperate Thread
-                    // TODO: Commenting it for now since no such functions exists but we have to do the update action here only in a seperate thread
-                    // updateGameUI(updatedState);
-                });  // Update the JavaFX UI
+                try{
+                    if(payload instanceof GameState){
+                        GameState updatedState = (GameState) payload;
+                        // you can use following to run in separate thread
+//                executorService.submit(() -> updateUIWithGameState(updatedState));
+                        Platform.runLater(() -> {
+                            // this should be on a seperate Thread
+                            // TODO: Commenting it for now since no such functions exists but we have to do the update action here only in a seperate thread
+                            // updateGameUI(updatedState);
+                        });  // Update the JavaFX UI
+                    }else{
+                        System.out.println("Recieved unexpected payload type: " + payload.getClass());
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         });
 
 
-        session.subscribe("/user/queue/invite", new StompFrameHandler() {
+        session.subscribe("/queue/invite", new StompFrameHandler() {
             @Override
             public Type getPayloadType(StompHeaders headers) {
                 return InviteMessage.class;

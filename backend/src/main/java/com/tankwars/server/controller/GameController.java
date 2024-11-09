@@ -14,7 +14,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.messaging.simp.user.SimpSession;
 import org.springframework.messaging.simp.user.SimpSubscription;
 import org.springframework.messaging.simp.user.SimpUser;
@@ -30,18 +29,28 @@ public class GameController {
     private final SimpMessagingTemplate messagingTemplate;
     private final UserRegistry userRegistry = UserRegistry.getInstance();
 
+    @Autowired
     public GameController(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
 
     @MessageMapping("/game/{roomId}/invite")
-    public void sendInvite(@Payload InviteMessage inviteMessage, @DestinationVariable String roomId) {
+    @SendTo("/queue/invite")
+    public InviteMessage sendInvite(@Payload InviteMessage inviteMessage, @DestinationVariable String roomId) {
         String inviteeUsername = inviteMessage.getInviteeUsername();
         System.out.println("IN SERVER: inviting user: "+ inviteeUsername);
-        // Send invite to specific user queue
-        messagingTemplate.convertAndSendToUser(inviteeUsername,"queue/invite", inviteMessage);
-        // Start invitation timer
-        startInvitationTimer(inviteMessage.getInviterUsername(), inviteeUsername, roomId);
+//        // Send invite to specific user queue
+//        messagingTemplate.convertAndSendToUser(inviteeUsername,"/queue/invite", inviteMessage, createHeaders(inviteeUsername));
+//        // Start invitation timer
+//        startInvitationTimer(inviteMessage.getInviterUsername(), inviteeUsername, roomId);
+        return inviteMessage;
+    }
+
+    private MessageHeaders createHeaders(String sessionId) {
+        SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
+        headerAccessor.setSessionId(sessionId);
+        headerAccessor.setLeaveMutable(true);
+        return headerAccessor.getMessageHeaders();
     }
 
     @Autowired
