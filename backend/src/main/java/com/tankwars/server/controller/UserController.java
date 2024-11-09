@@ -63,4 +63,28 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
+
+    // why are these changes not getting tracked?
+
+    // check the user existence
+    @PostMapping("/userExists")
+    public ResponseEntity<DTO> checkUserExists(@RequestParam String username){
+        DTO result = userService.userExists(username);
+        if(!result.success){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
+        return ResponseEntity.ok(result);
+    }
+
+    // Reject friend request
+    @PostMapping("/rejectRequest")
+    public ResponseEntity<DTO> rejectRequest(@RequestParam String currentUsername, @RequestParam String requesterUsername){
+        DTO result = userService.rejectFriendRequest(currentUsername,requesterUsername);
+        if(!result.success){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
+        return ResponseEntity.ok(result);
+    }
+
+
 }
