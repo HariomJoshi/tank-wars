@@ -1,6 +1,7 @@
 package com.tankwars.frontend.tankwarsclient;
 
 import com.tankwars.frontend.controllers.DashboardMainController;
+import com.tankwars.frontend.controllers.GameWindow;
 import com.tankwars.frontend.controllers.LoginSignupController;
 import com.tankwars.frontend.utils.User;
 import javafx.animation.FadeTransition;
@@ -104,5 +105,14 @@ public class InitializeGame extends Application {
         primaryStage.setMaximized(true);
     }
 
+
+    public void showGameWindow() throws IOException{
+        FXMLLoader gameMainWindowLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/game-window.fxml"));
+        Scene mainWindowScene = new Scene(gameMainWindowLoader.load());
+        GameWindow controller = gameMainWindowLoader.getController();
+        controller.setMainApp(this);
+        primaryStage.setScene(mainWindowScene);
+        primaryStage.setMaximized(true);
+    }
 
 }
