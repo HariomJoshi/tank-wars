@@ -1,19 +1,24 @@
 package com.tankwars.frontend.controllers;
 
 import com.tankwars.frontend.tankwarsclient.InitializeGame;
+
 import com.tankwars.frontend.tankwarsclient.Tank;
+
 import com.tankwars.frontend.tankwarsclient.terrains.DesertTerrain;
 import com.tankwars.frontend.tankwarsclient.terrains.GrassMountainTerrain;
 import com.tankwars.frontend.tankwarsclient.terrains.SnowyMountainTerrain;
 import com.tankwars.frontend.tankwarsclient.terrains.Terrain;
 import javafx.fxml.FXML;
+
 import javafx.geometry.Pos;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 
 import java.util.Random;
 
@@ -23,6 +28,7 @@ public class GameWindow {
     @FXML
     private StackPane terrainAndControlsPane;
 
+
     InitializeGame mainApp = new InitializeGame();
 
     Tank userTank = new Tank(0, 0, Color.RED, Color.GREEN, false);
@@ -30,6 +36,7 @@ public class GameWindow {
 
     // Create and add GameController
     GameController gameController = new GameController(userTank, (Stage)mainPane.getScene().getWindow());
+
 
     @FXML
     public void initialize() {
@@ -87,7 +94,8 @@ public class GameWindow {
         };
     }
 
-    public void setMainApp(InitializeGame gameWindow) {
+
         this.mainApp = gameWindow;
     }
 }
+

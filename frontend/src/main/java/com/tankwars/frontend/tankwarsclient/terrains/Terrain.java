@@ -10,11 +10,13 @@ import java.util.Random;
 
 public abstract class Terrain {
     public abstract void drawTerrain(GraphicsContext gc);
+
     public abstract double getHeightAt(double posX);
 
     protected double[] generateTerrain(int width, int height){
         double[] points = new double[width];
         int sections = 15;
+
         double baseHeight = height * 0.5;
         double maxPeakHeight = height * 0.3;
         double[] peaks = new double[sections+1];

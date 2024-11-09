@@ -7,6 +7,7 @@ import javafx.scene.paint.Stop;
 
 public class SnowyMountainTerrain extends Terrain{
 
+
     int width, height;
     private double[] snowyTerrain = generateTerrain(width, height);
 
@@ -16,15 +17,18 @@ public class SnowyMountainTerrain extends Terrain{
         height = (int) gc.getCanvas().getHeight();
 
 
+
         // Gradient for a snowy terrain
         LinearGradient terrainGradient = new LinearGradient(0, 0, 0, 1, true, null,
                 new Stop(0, Color.WHITE), new Stop(0.5, Color.LIGHTGRAY), new Stop(1, Color.DARKGRAY));
         gc.setFill(terrainGradient);
 
+
         // Initialize mountainTerrain based on the width and height
         if (snowyTerrain == null || snowyTerrain.length != width) {
             snowyTerrain = generateTerrain(width, height);
         }
+
 
         // Draw the terrain
         gc.beginPath();
@@ -44,6 +48,7 @@ public class SnowyMountainTerrain extends Terrain{
         }
     }
 
+
     @Override
     public double getHeightAt(double posX) {
 //        // Ensure the position is within the bounds of the array
@@ -55,5 +60,6 @@ public class SnowyMountainTerrain extends Terrain{
         // Cast posX to int as array indices must be integers
         return snowyTerrain[(int) posX];
     }
+
 
 }

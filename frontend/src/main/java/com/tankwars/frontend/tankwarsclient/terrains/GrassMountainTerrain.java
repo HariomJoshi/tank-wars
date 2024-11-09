@@ -7,6 +7,7 @@ import javafx.scene.paint.Stop;
 
 public class GrassMountainTerrain extends Terrain{
 
+
     private int width, height;
     private double[] mountainTerrain = generateTerrain(width, height);
 
@@ -15,13 +16,16 @@ public class GrassMountainTerrain extends Terrain{
         width = (int) gc.getCanvas().getWidth();
         height = (int) gc.getCanvas().getHeight();
 
+
         LinearGradient terrainGradient = new LinearGradient(0, 0, 0, 1, true, null,
                 new Stop(0, Color.DARKGREEN), new Stop(1, Color.FORESTGREEN));
         gc.setFill(terrainGradient);
+
         // Initialize mountainTerrain based on the width and height
         if (mountainTerrain == null || mountainTerrain.length != width) {
             mountainTerrain = generateTerrain(width, height);
         }
+
         gc.beginPath();
         gc.moveTo(0, height);
 
@@ -39,6 +43,7 @@ public class GrassMountainTerrain extends Terrain{
         }
     }
 
+
     @Override
     public double getHeightAt(double posX) {
 //        // Normalize posX to fit within the bounds of the array
@@ -55,6 +60,5 @@ public class GrassMountainTerrain extends Terrain{
 //        return height;
         return mountainTerrain[(int)posX];
     }
-
 
 }

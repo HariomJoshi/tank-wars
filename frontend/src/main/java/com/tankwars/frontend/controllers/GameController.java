@@ -1,5 +1,6 @@
 package com.tankwars.frontend.controllers;
 
+
 //import com.tankwars.frontend.tankwarsclient.Projectile;
 import com.tankwars.frontend.tankwarsclient.Tank;
 //import com.tankwars.frontend.tankwarsclient.weapons.CannonBall;
@@ -8,6 +9,10 @@ import com.tankwars.frontend.tankwarsclient.Tank;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
+
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,16 +24,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.text.Font;
+
 import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.List;
+
 import java.util.Optional;
 
 public class GameController extends AnchorPane {
 
+
     private final Stage source;
+
     private ChoiceBox<String> weapons;
     private Label labelWeightValue;
     private Button buttonFire;
@@ -37,10 +45,13 @@ public class GameController extends AnchorPane {
     private Label labelPower;
     private Button buttonPower;
 
+
     private int angle, power, weight, damage;
+
     private HBox mainControls;      // Original controls panel
     private HBox angleControlsPanel; // Angle controls panel
     private HBox powerControlsPanel; // Power controls panel
+
 
     private Tank user;
     private boolean isProjectileInMotion = false;
@@ -50,10 +61,12 @@ public class GameController extends AnchorPane {
     public GameController(Tank user, Stage source) {
         initializeMainControls();
 //        initializeWeapons();
+
         initializeAngleControlsPanel();
         initializePowerControlsPanel();
         setupKeyControls();
         this.requestFocus(); // Request focus for key controls
+
         this.user = user;
         this.source = source;
         buttonFire.setOnAction(e->handleFireWeapon());
@@ -81,6 +94,7 @@ public class GameController extends AnchorPane {
 //            this.damage = newValue.getDamage();
 //        }));
 //    }
+
 
     private void initializeMainControls() {
         // Main control container
@@ -160,12 +174,16 @@ public class GameController extends AnchorPane {
         AnchorPane.setRightAnchor(mainControls, 0.0);
     }
 
+
     private void exitGame(){
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Confirm exit" ,ButtonType.OK, ButtonType.CANCEL);
         Optional<ButtonType> response = alert.showAndWait();
         if(response.isPresent() && response.get()==ButtonType.OK){
             Platform.exit();
-//            System.exit(1);
+
+           System.exit(1);
+
         }
     }
 
@@ -321,6 +339,7 @@ public class GameController extends AnchorPane {
     }
 
     private void handleFireWeapon() {
+
 //        System.out.println("Fire button working");
 //        freezeControls();
 ////        unFreezeControls();
@@ -349,4 +368,5 @@ public class GameController extends AnchorPane {
 //    public void fireTankProjectile(double angle, double power, double weight){
 //        visualizeProjectile(angle, power, weight);
 //    }
+
 }

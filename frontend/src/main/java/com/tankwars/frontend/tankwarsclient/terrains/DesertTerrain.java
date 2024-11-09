@@ -7,6 +7,7 @@ import javafx.scene.paint.Stop;
 
 public class DesertTerrain extends Terrain{
 
+
     private int width, height;
     private double[] dryMountainTerrain = generateTerrain(width, height);
 
@@ -22,6 +23,7 @@ public class DesertTerrain extends Terrain{
         if (dryMountainTerrain == null || dryMountainTerrain.length != width) {
             dryMountainTerrain = generateTerrain(width, height);
         }
+
         gc.beginPath();
         gc.moveTo(0, height);
 
@@ -40,6 +42,7 @@ public class DesertTerrain extends Terrain{
         }
     }
 
+
     @Override
     public double getHeightAt(double posX) {
 //        // Ensure the position is within the bounds of the array
@@ -51,5 +54,6 @@ public class DesertTerrain extends Terrain{
         // Cast posX to int as array indices must be integers
         return dryMountainTerrain[(int) posX];
     }
+
 
 }

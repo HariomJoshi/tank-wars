@@ -58,7 +58,7 @@ public class InitializeGame extends Application {
         SequentialTransition sequentialTransition = new SequentialTransition(scaleTransition, fadeOut);
         sequentialTransition.setOnFinished(event -> {
             try {
-                showLoginWindow();
+                showDashboard();
             } catch (IOException e) {
                 e.printStackTrace();
             }

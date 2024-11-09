@@ -49,6 +49,7 @@ public class DashboardMainController {
     private ListView<Invite> listGameInvites = new ListView<>();
     private Popup invites = new Popup();
     private List<Invite> currentInvites = new ArrayList<>(); // List to hold current invites
+    private InitializeGame mainApp;
 
     public void initialize() {
         Animations.waveAnimation(headerDashboard);
@@ -154,7 +155,9 @@ public class DashboardMainController {
 
     public void setMainApp(InitializeGame game) {
         // Implement the logic to set the main app instance if necessary
+
         this.mainApp = game;
+
     }
 
 
