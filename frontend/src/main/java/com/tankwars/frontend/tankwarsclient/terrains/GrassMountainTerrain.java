@@ -7,15 +7,25 @@ import javafx.scene.paint.Stop;
 
 public class GrassMountainTerrain extends Terrain{
 
+
+    private int width, height;
+    private double[] mountainTerrain = generateTerrain(width, height);
+
     @Override
     public void drawTerrain(GraphicsContext gc) {
-        int width = (int) gc.getCanvas().getWidth();
-        int height = (int) gc.getCanvas().getHeight();
-        double[] mountainTerrain = generateTerrain(width, height);
+        width = (int) gc.getCanvas().getWidth();
+        height = (int) gc.getCanvas().getHeight();
+
 
         LinearGradient terrainGradient = new LinearGradient(0, 0, 0, 1, true, null,
                 new Stop(0, Color.DARKGREEN), new Stop(1, Color.FORESTGREEN));
         gc.setFill(terrainGradient);
+
+        // Initialize mountainTerrain based on the width and height
+        if (mountainTerrain == null || mountainTerrain.length != width) {
+            mountainTerrain = generateTerrain(width, height);
+        }
+
         gc.beginPath();
         gc.moveTo(0, height);
 
@@ -32,4 +42,23 @@ public class GrassMountainTerrain extends Terrain{
             gc.fillOval(i, y, 5+Math.random()*5,5+Math.random()*5);
         }
     }
+
+
+    @Override
+    public double getHeightAt(double posX) {
+//        // Normalize posX to fit within the bounds of the array
+//        if (mountainTerrain.length > 0) {
+//            int normalizedX = (int) ((posX / width) * mountainTerrain.length);
+//
+//            // Clamp the value to ensure it's within valid bounds
+//            normalizedX = Math.max(0, Math.min(normalizedX, mountainTerrain.length - 1));
+//
+//            return mountainTerrain[normalizedX];
+//        }
+//
+//        // Return a default height if mountainTerrain is not properly initialized
+//        return height;
+        return mountainTerrain[(int)posX];
+    }
+
 }

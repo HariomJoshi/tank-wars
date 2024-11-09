@@ -105,6 +105,7 @@ public class InitializeGame extends Application {
         primaryStage.setMaximized(true);
     }
 
+
     public void showGameWindow() throws IOException{
         FXMLLoader gameMainWindowLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/game-window.fxml"));
         Scene mainWindowScene = new Scene(gameMainWindowLoader.load());
@@ -113,4 +114,5 @@ public class InitializeGame extends Application {
         primaryStage.setScene(mainWindowScene);
         primaryStage.setMaximized(true);
     }
+
 }

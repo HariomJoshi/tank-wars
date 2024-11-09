@@ -42,6 +42,8 @@ public class DashboardMainController {
     @FXML
     private Text headerDashboard;
 
+    private InitializeGame mainApp;
+
     private User currentUser = User.getInstance();
     private final List<Button> dashboardActions = new ArrayList<>();
     private ListView<Invite> listGameInvites = new ListView<>();
@@ -141,6 +143,7 @@ public class DashboardMainController {
     private void handlePlayWithComputer() throws IOException {
         // Implement play with computer logic here
         mainApp.showGameWindow();
+
     }
 
     private void handleExitGame() {
@@ -152,7 +155,9 @@ public class DashboardMainController {
 
     public void setMainApp(InitializeGame game) {
         // Implement the logic to set the main app instance if necessary
-        mainApp = game;
+
+        this.mainApp = game;
+
     }
 
 
