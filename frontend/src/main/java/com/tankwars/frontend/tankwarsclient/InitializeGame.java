@@ -1,7 +1,9 @@
 package com.tankwars.frontend.tankwarsclient;
 
 import com.tankwars.frontend.controllers.DashboardMainController;
+import com.tankwars.frontend.controllers.GameWindow;
 import com.tankwars.frontend.controllers.LoginSignupController;
+import com.tankwars.frontend.utils.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
@@ -27,6 +29,8 @@ public class InitializeGame extends Application {
         this.primaryStage = stage;
         setUpInitialWindow();
     }
+
+    private User currentUser = User.getInstance();
 
     private void setUpInitialWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/initial-page.fxml"));
@@ -54,7 +58,7 @@ public class InitializeGame extends Application {
         SequentialTransition sequentialTransition = new SequentialTransition(scaleTransition, fadeOut);
         sequentialTransition.setOnFinished(event -> {
             try {
-                showLoginWindow();
+                showDashboard();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -101,5 +105,12 @@ public class InitializeGame extends Application {
         primaryStage.setMaximized(true);
     }
 
-
+    public void showGameWindow() throws IOException{
+        FXMLLoader gameMainWindowLoader = new FXMLLoader(getClass().getResource("/com/tankwars/frontend/game-window.fxml"));
+        Scene mainWindowScene = new Scene(gameMainWindowLoader.load());
+        GameWindow controller = gameMainWindowLoader.getController();
+        controller.setMainApp(this);
+        primaryStage.setScene(mainWindowScene);
+        primaryStage.setMaximized(true);
+    }
 }

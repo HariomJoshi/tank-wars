@@ -2,6 +2,7 @@ package com.tankwars.frontend.controllers;
 
 import com.tankwars.frontend.tankwarsclient.Animations;
 import com.tankwars.frontend.tankwarsclient.InitializeGame;
+import com.tankwars.frontend.utils.User;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
@@ -38,10 +39,12 @@ public class DashboardMainController {
     @FXML
     private Text headerDashboard;
 
+
     private final List<Button> dashboardActions = new ArrayList<>();
     private ListView<Invite> listGameInvites = new ListView<>();
     private Popup invites = new Popup();
     private List<Invite> currentInvites = new ArrayList<>(); // List to hold current invites
+    private InitializeGame mainApp;
 
     public void initialize() {
         Animations.waveAnimation(headerDashboard);
@@ -56,7 +59,13 @@ public class DashboardMainController {
             btn.setOnMouseExited(e -> Animations.mouseExitTransition(btn));
         }
 
-        buttonPlayWithComputer.setOnAction(e -> handlePlayWithComputer());
+        buttonPlayWithComputer.setOnAction(e -> {
+            try {
+                handlePlayWithComputer();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         buttonManageFriends.setOnAction(e -> {
             try {
                 handleManageFriends();
@@ -113,8 +122,9 @@ public class DashboardMainController {
         manageFriendsStage.show();
     }
 
-    private void handlePlayWithComputer() {
+    private void handlePlayWithComputer() throws IOException {
         // Implement play with computer logic here
+        mainApp.showGameWindow();
     }
 
     private void handleExitGame() {
@@ -126,7 +136,14 @@ public class DashboardMainController {
 
     public void setMainApp(InitializeGame game) {
         // Implement the logic to set the main app instance if necessary
+        mainApp = game;
     }
+
+
+
+
+
+
 
     // Custom cell for displaying invites
     class InviteCell extends ListCell<Invite> {
@@ -174,6 +191,8 @@ public class DashboardMainController {
             }
         }
     }
+
+
 
     // Invite class to represent game invites
     class Invite {

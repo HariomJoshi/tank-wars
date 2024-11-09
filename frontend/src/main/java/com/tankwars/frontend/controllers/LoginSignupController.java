@@ -3,6 +3,7 @@ package com.tankwars.frontend.controllers;
 import com.tankwars.frontend.tankwarsclient.Animations;
 import com.tankwars.frontend.tankwarsclient.InitializeGame;
 import com.tankwars.frontend.utils.ApiClient;
+import com.tankwars.frontend.utils.User;
 import com.tankwars.frontend.utils.Valid;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
@@ -69,6 +70,8 @@ public class LoginSignupController {
 
     @FXML
     private Button buttonExitGame;
+
+    private User currentUser = User.getInstance();
 
     @FXML
     public void initialize() {
@@ -205,6 +208,7 @@ public class LoginSignupController {
                 if(Boolean.TRUE.equals(res)){
                        // TODO: animation to the dashboard
                     try {
+                        currentUser.setUsername(loginUsername.getText());
                         mainApp.showDashboard();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -325,6 +329,8 @@ public class LoginSignupController {
     public void setMainApp(InitializeGame gameWindow) {
         mainApp = gameWindow;
     }
+
+
 
 
 }
