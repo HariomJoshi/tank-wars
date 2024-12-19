@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <StackPane prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fx:id="welcomeText" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Tank Wars" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="826.362548828125">
+               <font>
+                  <Font name="Algerian" size="120.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="0.2007575432459513" endY="0.12499997110077829" startX="0.20075757936997846" startY="0.6515151406779434">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.3263157904148102" green="0.05317738652229309" blue="0.05317738652229309" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+         </children>
+      </StackPane>
+   </children>
+   <effect>
+      <Glow />
+   </effect>
+</AnchorPane>

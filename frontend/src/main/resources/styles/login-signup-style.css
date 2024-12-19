@@ -1,0 +1,42 @@
+<Pane fx:id="signupPane" maxHeight="Infinity" maxWidth="Infinity" minHeight="Infinity" minWidth="Infinity" prefHeight="100%" prefWidth="100%"
+      styleClass="signup-pane" visible="false" StackPane.alignment="CENTER">
+    <children>
+        <Text layoutX="0.0" layoutY="10%" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER" wrappingWidth="100%">
+            <font>
+                <Font name="Algerian" size="4vw" />
+            </font>
+            <fill>
+                <LinearGradient endX="0.5" endY="0.5" startX="0.5" startY="0.8">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.35" green="0.04" blue="0.04" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.66" green="0.39" blue="0.39" opacity="0.88" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Text>
+        <Label layoutX="10%" layoutY="20%" prefHeight="auto" prefWidth="80%" text="Username" styleClass="label" />
+        <TextField layoutX="10%" layoutY="25%" prefWidth="80%" styleClass="text-field" />
+
+        <Label layoutX="10%" layoutY="35%" prefHeight="auto" prefWidth="80%" text="Email" styleClass="label" />
+        <TextField layoutX="10%" layoutY="40%" prefWidth="80%" styleClass="text-field" />
+
+        <Label layoutX="10%" layoutY="50%" prefHeight="auto" prefWidth="80%" text="Password" styleClass="label" />
+        <TextField layoutX="10%" layoutY="55%" prefWidth="80%" styleClass="text-field" />
+
+        <Label layoutX="10%" layoutY="65%" prefHeight="auto" prefWidth="80%" text="Confirm Password" styleClass="label" />
+        <TextField layoutX="10%" layoutY="70%" prefWidth="80%" styleClass="text-field" />
+
+        <Button fx:id="buttonRegisterUser" layoutX="10%" layoutY="80%" prefHeight="10%" prefWidth="80%" text="Register" styleClass="register-button" />
+
+        <Label layoutX="10%" layoutY="92%" prefHeight="auto" prefWidth="50%" text="Already a User ?" styleClass="label" />
+        <Button fx:id="loginLink" layoutX="60%" layoutY="92%" prefHeight="auto" prefWidth="30%" text="Login Here" styleClass="link-button" />
+    </children>
+</Pane>
